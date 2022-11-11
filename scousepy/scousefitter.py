@@ -212,7 +212,8 @@ class ScouseFitter(object):
         from matplotlib import rcParams
 
         self.cmap=plt.cm.binary_r
-        rcParams['font.family']= 'Arial'
+        #rcParams['font.family']= 'Arial'
+        rcParams['font.family'] = 'DejaVu Sans Mono'
         rcParams['font.size']= 9
         rcParams['lines.linewidth']= 1.     ## line width in points
         rcParams['axes.labelsize'] =10  ## fontsize of the x any y labels
@@ -1249,9 +1250,9 @@ def print_fit_information(self):
     update_text(self.text_aic,straic)
 
     if self.modeldict['ncomps']==0:
-        strpeaks=str(("{0}:  {1} +/- {2}").format(self.modeldict['parnames'][0],np.around(self.modeldict['params'][0], decimals=2),np.around(self.modeldict['errors'][0],decimals=2)))
-        strcentroids=str(("{0}:  {1} +/- {2}").format(self.modeldict['parnames'][1],np.around(self.modeldict['params'][1], decimals=2),np.around(self.modeldict['errors'][1],decimals=2)))
-        strwidths=str(("{0}:  {1} +/- {2}").format(self.modeldict['parnames'][2],np.around(self.modeldict['params'][2], decimals=2),np.around(self.modeldict['errors'][2],decimals=2)))
+        strpeaks=str(("{0:10s}:  {1:6.2f} +/- {2:4.2f}").format(self.modeldict['parnames'][0],np.around(self.modeldict['params'][0], decimals=2),np.around(self.modeldict['errors'][0],decimals=2)))
+        strcentroids=str(("{0:10s}:  {1:6.2f} +/- {2:4.2f}").format(self.modeldict['parnames'][1],np.around(self.modeldict['params'][1], decimals=2),np.around(self.modeldict['errors'][1],decimals=2)))
+        strwidths=str(("{0:10s}:  {1:6.2f} +/- {2:4.2f}").format(self.modeldict['parnames'][2],np.around(self.modeldict['params'][2], decimals=2),np.around(self.modeldict['errors'][2],decimals=2)))
         update_text(self.text_peaks,strpeaks)
         update_text(self.text_centroids,strcentroids)
         update_text(self.text_widths,strwidths)
@@ -1269,9 +1270,9 @@ def print_fit_information(self):
             _parrange=parrange[i]
             for j in range(self.modeldict['ncomps']):
                 if j==0:
-                    mystring=str(("{0}: {1} +/- {2}").format(self.modeldict['parnames'][i],np.around(self.modeldict['params'][_parrange[j]], decimals=2),np.around(self.modeldict['errors'][_parrange[j]],decimals=2)))
+                    mystring=str(("{0:10s}: {1:6.2f} +/- {2:4.2f}").format(self.modeldict['parnames'][i],np.around(self.modeldict['params'][_parrange[j]], decimals=2),np.around(self.modeldict['errors'][_parrange[j]],decimals=2)))
                 else:
-                    mystring+=str((";   {0} +/- {1}").format(np.around(self.modeldict['params'][_parrange[j]], decimals=2),np.around(self.modeldict['errors'][_parrange[j]],decimals=2)))
+                    mystring+=str((";   {0:6.2f} +/- {1:4.2f}").format(np.around(self.modeldict['params'][_parrange[j]], decimals=2),np.around(self.modeldict['errors'][_parrange[j]],decimals=2)))
             update_text(textobjects[i],mystring)
 
 def print_to_file(self):
